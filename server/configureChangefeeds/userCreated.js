@@ -1,10 +1,11 @@
+/* eslint-disable no-console, camelcase */
 import processChangeFeedWithAutoReconnect from 'rethinkdb-changefeed-reconnect'
 
 import {changefeedForUserCreated} from 'src/server/services/dataService'
 import {handleConnectionError} from './util'
 
 export default function userCreated(userCreatedQueue) {
-  processChangeFeedWithAutoReconnect(changefeedForUserCreated, _getFeedProcessor(), handleConnectionError, {
+  processChangeFeedWithAutoReconnect(changefeedForUserCreated, _getFeedProcessor(userCreatedQueue), handleConnectionError, {
     changefeedName: 'user created'
   })
 }
@@ -15,6 +16,6 @@ function _getFeedProcessor(userCreatedQueue) {
       attempts: 3,
       backoff: {type: 'fixed', delay: 60000},
     }
-    userCreateQueue.add(user, jobOpts)
+    userCreatedQueue.add(user, jobOpts)
   }
 }

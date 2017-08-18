@@ -1,4 +1,5 @@
 import {connect} from 'src/db'
+import {USER_ROLES} from 'src/common/models/user'
 
 const r = connect()
 
