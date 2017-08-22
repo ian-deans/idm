@@ -5,9 +5,10 @@ import {changefeedForUserCreated} from 'src/server/services/dataService'
 import {handleConnectionError} from './util'
 
 export default function userCreated(userCreatedQueue) {
-  processChangeFeedWithAutoReconnect(changefeedForUserCreated, _getFeedProcessor(userCreatedQueue), handleConnectionError, {
-    changefeedName: 'user created'
-  })
+  processChangeFeedWithAutoReconnect(
+    changefeedForUserCreated, _getFeedProcessor(userCreatedQueue), handleConnectionError,
+    {changefeedName: 'user created'}
+  )
 }
 
 function _getFeedProcessor(userCreatedQueue) {

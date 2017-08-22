@@ -1,7 +1,5 @@
-import {connect} from 'src/db'
+import r from '../r'
 import {USER_ROLES} from 'src/common/models/user'
-
-const r = connect()
 
 export default function changefeedForUserCreated() {
   return r.table('users')
